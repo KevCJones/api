@@ -51,7 +51,7 @@ functions:
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
   create:
-    handler: create.main
+    handler: endpoints/create.main
     events:
       - http:
           path: notes
@@ -62,10 +62,32 @@ functions:
   # - path: url path is /notes/{id}
   # - method: GET request
   get:
-    handler: get.main
+    handler: endpoints/get.main
     events:
       - http:
           path: notes/{id}
           method: get
+          cors: true
+          authorizer: aws_iam
+  # Defines an HTTP API endpoint that calls the main function in list.js
+  # - path: url path is /notes
+  # - method: GET request
+  list:
+    handler: endpoints/list.main
+    events:
+      - http:
+          path: notes
+          method: get
+          cors: true
+          authorizer: aws_iam
+  # Defines an HTTP API endpoint that calls the main function in update.js
+  # - path: url path is /notes/{id}
+  # - method: PUT request
+  update:
+    handler: endpoints/update.main
+    events:
+      - http:
+          path: notes/{id}
+          method: put
           cors: true
           authorizer: aws_iam
