@@ -102,3 +102,25 @@ functions:
           method: delete
           cors: true
           authorizer: aws_iam
+  # Defines an HTTP API endpoint that calls the main function in billing-payment-intent
+  # - path: url path is /payment-intent
+  # - method: POST request
+  paymentintent:
+    handler: endpoints/billing/payment-intent.main
+    events: 
+      - http:
+          path: payment-intent
+          method: post
+          cors: true
+          authorizer: aws_iam
+  # Defines an HTTP API endpoint that stripe will call when a payment is made using the payment intent
+  # - path: url path is /payment-webhook
+  # - method: POST request
+  paymentwebhook:
+    handler: endpoints/billing/payment-webhook.main
+    events: 
+      - http:
+          path: payment-webhook
+          method: post
+          cors: true
+
