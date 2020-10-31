@@ -1,8 +1,9 @@
+import { APIGatewayProxyEvent } from 'aws-lambda';
 import { DocumentClient } from 'aws-sdk/clients/dynamodb';
-import dynamoDB from '../libs/dynamodb-lib';
-import handler from '../libs/handler-lib';
+import dynamoDB from '../../libs/dynamodb-lib';
+import handler from '../../libs/handler-lib';
 
-export const main = handler(async (event, context) => {
+export const main = handler(async (event: APIGatewayProxyEvent, context: any) => {
   const params: DocumentClient.QueryInput = {
     TableName: process.env.tableName,
     // 'KeyConditionExpression' defines the condition for the query

@@ -27,6 +27,8 @@ provider:
   # under process.env.
   environment:
     tableName: notes
+    stripeSecretKey: ${env:STRIPE_SECRET_KEY}
+    stripePublishableKey: ${env:STRIPE_PUBLISHABLE_KEY}
   
 
   # 'iamRoleStatements' defines the permission policy for the Lambda function.
@@ -51,7 +53,7 @@ functions:
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
   create:
-    handler: endpoints/create.main
+    handler: endpoints/notes/create.main
     events:
       - http:
           path: notes
@@ -62,7 +64,7 @@ functions:
   # - path: url path is /notes/{id}
   # - method: GET request
   get:
-    handler: endpoints/get.main
+    handler: endpoints/notes/get.main
     events:
       - http:
           path: notes/{id}
@@ -73,7 +75,7 @@ functions:
   # - path: url path is /notes
   # - method: GET request
   list:
-    handler: endpoints/list.main
+    handler: endpoints/notes/list.main
     events:
       - http:
           path: notes
@@ -84,7 +86,7 @@ functions:
   # - path: url path is /notes/{id}
   # - method: PUT request
   update:
-    handler: endpoints/update.main
+    handler: endpoints/notes/update.main
     events:
       - http:
           path: notes/{id}
@@ -95,7 +97,7 @@ functions:
   # - path: url path is /notes/{id}
   # - method: DELETE request
   delete:
-    handler: endpoints/delete.main
+    handler: endpoints/notes/delete.main
     events:
       - http:
           path: notes/{id}

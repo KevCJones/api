@@ -1,8 +1,9 @@
+import { APIGatewayProxyEvent } from 'aws-lambda';
 import { DocumentClient } from 'aws-sdk/clients/dynamodb';
-import dynamoDb from '../libs/dynamodb-lib';
-import handler from '../libs/handler-lib';
+import dynamoDb from '../../libs/dynamodb-lib';
+import handler from '../../libs/handler-lib';
 
-export const main = handler(async (event, context) => {
+export const main = handler(async (event: APIGatewayProxyEvent, context: any) => {
   const data = JSON.parse(event.body);
   const params: DocumentClient.UpdateItemInput = {
     TableName: process.env.tableName,
