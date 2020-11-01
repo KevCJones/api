@@ -1,7 +1,7 @@
-import { APIGatewayProxyHandlerV2 } from 'aws-lambda';
+import { APIGatewayProxyEventV2, APIGatewayProxyHandlerV2, Context } from 'aws-lambda';
 
 export default function handler(lambda): APIGatewayProxyHandlerV2 {
-  return async function (event, context) {
+  return async function (event: APIGatewayProxyEventV2, context: Context) {
     let body, statusCode;
 
     try {
