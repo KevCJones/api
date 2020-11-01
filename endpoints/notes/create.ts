@@ -1,8 +1,8 @@
+import { APIGatewayProxyEvent } from 'aws-lambda';
 import { DocumentClient } from 'aws-sdk/clients/dynamodb';
 import * as uuid from 'uuid';
-import handler from '../../libs/handler-lib';
 import dynamoDB from '../../libs/dynamodb-lib';
-import { APIGatewayProxyEvent } from 'aws-lambda';
+import handler from '../../libs/handler-lib';
 
 export const main = handler(async (event: APIGatewayProxyEvent, context: any) => {
   const data = JSON.parse(event.body);

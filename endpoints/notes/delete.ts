@@ -1,6 +1,6 @@
-import handler from '../../libs/handler-lib';
-import dynamoDb from '../../libs/dynamodb-lib';
 import { APIGatewayProxyEvent } from 'aws-lambda';
+import dynamoDb from '../../libs/dynamodb-lib';
+import handler from '../../libs/handler-lib';
 
 export const main = handler(async (event: APIGatewayProxyEvent, context: any) => {
   const params = {
