@@ -3,13 +3,15 @@ import Stripe from 'stripe';
 import { calculateCost } from '../../libs/billing-lib';
 import handler from '../../libs/handler-lib';
 
+const stripe = new Stripe(process.env.stripeSecretKey, {
+  apiVersion: '2020-08-27',
+  typescript: true,
+});
+
+//found this after this code - https://itnext.io/stripe-react-and-serverless-part-1-3482e9332b4c
+
 export const main = handler(async (event: APIGatewayProxyEvent, context: any) => {
   const { items } = JSON.parse(event.body);
-
-  const stripe = new Stripe(process.env.stripeSecretKey, {
-    apiVersion: '2020-08-27',
-    typescript: true,
-  });
 
   const amount = calculateCost(items);
   // Create a PaymentIntent with the order amount and currency.

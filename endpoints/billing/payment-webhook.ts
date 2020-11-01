@@ -2,14 +2,14 @@ import { APIGatewayProxyEvent } from 'aws-lambda';
 import Stripe from 'stripe';
 import handler from '../../libs/handler-lib';
 
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: '2020-08-27',
+  typescript: true,
+});
+
 export const main = handler(async (event: APIGatewayProxyEvent, context: any) => {
   // Retrieve the event by verifying the signature using the raw body and secret.
   let stripeEvent: Stripe.Event;
-
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: '2020-08-27',
-    typescript: true,
-  });
 
   try {
     stripeEvent = stripe.webhooks.constructEvent(
