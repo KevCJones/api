@@ -2,7 +2,7 @@ import { APIGatewayProxyEvent } from 'aws-lambda';
 import dynamoDb from '../../libs/dynamodb-lib';
 import handler from '../../libs/handler-lib';
 
-export const main = handler(async (event: APIGatewayProxyEvent, context: any) => {
+export const main = handler(async (event: APIGatewayProxyEvent) => {
   const params = {
     TableName: process.env.tableName,
     // 'Key' defines the partition key and sort key of the item to be retrieved

@@ -7,7 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   typescript: true,
 });
 
-export const main = handler(async (event: APIGatewayProxyEvent, context: any) => {
+export const main = handler(async (event: APIGatewayProxyEvent) => {
   // Retrieve the event by verifying the signature using the raw body and secret.
   let stripeEvent: Stripe.Event;
 
@@ -23,15 +23,18 @@ export const main = handler(async (event: APIGatewayProxyEvent, context: any) =>
 
   // Extract the data from the event.
   const data: Stripe.Event.Data = stripeEvent.data;
-  const eventType: string = stripeEvent.type;
+  // const eventType: string = stripeEvent.type;
 
-  if (eventType === 'payment_intent.succeeded') {
-    // Cast the event into a PaymentIntent to make use of the types.
-    const pi: Stripe.PaymentIntent = data.object as Stripe.PaymentIntent;
-  } else if (eventType === 'payment_intent.payment_failed') {
-    // Cast the event into a PaymentIntent to make use of the types.
-    const pi: Stripe.PaymentIntent = data.object as Stripe.PaymentIntent;
-  }
+  // if (eventType === 'payment_intent.succeeded') {
+  // Cast the event into a PaymentIntent to make use of the types.
+  // const pi: Stripe.PaymentIntent = data.object as Stripe.PaymentIntent;
+  // } else if (eventType === 'payment_intent.payment_failed') {
+  // Cast the event into a PaymentIntent to make use of the types.
+  // const pi: Stripe.PaymentIntent = data.object as Stripe.PaymentIntent;
+  //}
+  const pi: Stripe.PaymentIntent = data.object as Stripe.PaymentIntent;
 
-  return { status: true };
+  console.log(pi);
+
+  return { status: stripeEvent };
 });

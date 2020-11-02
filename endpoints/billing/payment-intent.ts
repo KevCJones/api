@@ -10,7 +10,7 @@ const stripe = new Stripe(process.env.stripeSecretKey, {
 
 //found this after this code - https://itnext.io/stripe-react-and-serverless-part-1-3482e9332b4c
 
-export const main = handler(async (event: APIGatewayProxyEvent, context: any) => {
+export const main = handler(async (event: APIGatewayProxyEvent) => {
   const { items } = JSON.parse(event.body);
 
   const amount = calculateCost(items);

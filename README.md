@@ -133,3 +133,20 @@ To [override the default config](https://eslint.org/docs/user-guide/configuring)
 ---
 
 This repo is maintained by [Anomaly Innovations](https://anoma.ly); makers of [Seed](https://seed.run) and [Serverless Stack](https://serverless-stack.com).
+
+## Testing stub
+
+```
+npx aws-api-gateway-cli-test \
+--username='xxxx' \
+--password='xxxx' \
+--user-pool-id='eu-west-2_S1TqLHXSE' \
+--app-client-id='4jepk21ps9n6t3it95vokfor43' \
+--cognito-region='eu-west-2' \
+--identity-pool-id='eu-west-2:23debac9-6091-482a-b87b-f2b1d4ff082a' \
+--invoke-url='https://qw0h3zabti.execute-api.eu-west-2.amazonaws.com/prod/' \
+--api-gateway-region='eu-west-2' \
+--path-template='notes' \
+--method='POST' \
+--body='{"content":"hello world","attachment":"hello.jpg"}'
+```
